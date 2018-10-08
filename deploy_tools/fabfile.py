@@ -10,10 +10,10 @@ def deploy():
     else:
         site_folder = f'/home/{env.user}/sites/python-tdd'
     #site_folder = f'/home/{env.user}/sites/{env.host}'
-    run(f'mk dir -p {site_folder}')
+    run(f'mkdir -p {site_folder}')
     with cd(site_folder):
         _get_latest_source()
-        _update_virtulaenv()
+        _update_virtualenv()
         _create_or_update_dotenv()
         _update_static_files()
         _update_database()
@@ -29,7 +29,7 @@ def _get_latest_source():
 def _update_virtualenv():
     if not exists('virtualenv/bin/pip'):
         run(f'python3.6 -m venv virtualenv')
-    run('./virtualenv/bin/pip install -r requirements.txt')
+    run('./virtualenv/bin/pip install -r requirement.txt')
     
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')
